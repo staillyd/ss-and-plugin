@@ -39,7 +39,7 @@
     alias ss-server="ssserver -c ~/server/sss-config.json -s 127.0.0.1 -p 8388"#端口号和gq-server一致
     alias gq-ss="gq-server & ss-server"
   ```
-  - `source ~/.bashrc && gq-ss`
+  - `source ~/.bashrc`
 - client
   - 修改ssc-config.json文件
   ```json
@@ -69,9 +69,21 @@
   ```bash
     # gq-ss
     alias gq-client="~/client/gq-client-linux-amd64-1.2.2 -s 服务器地址 -l 1984 -c ~/client/gq-client-config.json"
-    alias ss-client="sslocal -c ~/client/sss-config.json -s 127.0.0.1 -p 1984 -l 1080"#-p的参数和gq-client里-l的参数一致
+    alias ss-client="sslocal -c ~/client/ssc-config.json -s 127.0.0.1 -p 1984 -l 1080"#-p的参数和gq-client里-l的参数一致
     alias gq-ss="gq-client & ss-client"
   ```
-  - `source ~/.bashrc && gq-ss`
+  - `source ~/.bashrc`
+
+## 使用
+- sever
+  - 终端输入`gq-ss`，不关闭该终端
+- client
+  - 终端输入`gq-ss`，不关闭该终端
+  - 若`gq-ss`出错，显示端口问题
+    - `lsof -i:1984` #显示占用1984端口号的PID,假设该PID号为111
+    - `kill -9 111` #关闭PID号为111的进程
+    - `lsof -i:1080` #显示占用1080端口号的PID,假设该PID号为222
+    - `kill -9 222` #关闭PID号为222的进程
+    - `gq-ss`
 
 完成!!! :smile: :smile: :smile:
